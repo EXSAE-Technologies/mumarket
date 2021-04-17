@@ -1,0 +1,9 @@
+$body-bg: rgb(230, 230, 230);
+$primary: rgb(0, 146, 139);
+
+@import "../scss/bootstrap.scss";
+
+.f-sticky-bottom {
+	position: sticky;
+	bottom: 0;
+}
