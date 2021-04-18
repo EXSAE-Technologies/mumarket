@@ -1,5 +1,8 @@
 <?php
 require_once "models.php";
+require_once "functions.php";
+
+$user = get_logged_in_user();
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +18,10 @@ require_once "models.php";
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">MuMarket</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target>
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		<a class="navbar-brand" href="/">MuMarket</a>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -29,5 +32,16 @@ require_once "models.php";
 				</li>
 			</ul>
 		</div>
+		<?php
+		if(logged_in()){
+		?>
+		<a href="" class="btn btn-primary"><?php echo $user["username"]; ?></a>
+		<?php
+		} else {
+		?>
+		<a href="/login.php" class="btn btn-primary">Log in</a>
+		<?php
+		}
+		?>
 	</div>
 </nav>
