@@ -72,8 +72,8 @@ abstract class Db{
 			$sql .= ",".$key;
 			$sql2 .= ",'".$value."'";
 		}
-		$sql .= ");";
-
+		$sql2 .= ");";
+		$sql .= $sql2;
 		return $this->post($sql);
 	}
 

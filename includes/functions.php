@@ -1,4 +1,6 @@
 <?php
+$messages = array();
+
 function logged_in(){
 	$logged_in = false;
 
@@ -21,4 +23,25 @@ function get_logged_in_user(){
 		return false;
 	}
 }
+
+function add_message($tags, $message){
+	$GLOBALS["messages"] = array_merge($GLOBALS["messages"], [["message"=>$message, "tags"=>$tags]]);
+}
+
+function render_messages(){
+	$messages = $GLOBALS["messages"];
+
+	if(count($messages) >= 0){
+		$html = '<ul class="list-group">';
+		foreach ($messages as $msg) {
+			$html .= '<li class="list-group-item my-2 '.$msg["tags"].'">'.$msg["message"].'</li>';
+		}
+		$html .= '</ul>';
+	} else {
+		$html = "";
+	}
+
+	echo $html;
+}
+
 ?>

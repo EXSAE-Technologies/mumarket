@@ -1,5 +1,44 @@
 <?php 
 require_once "includes/header.php";
+
+if(isset($_POST["type"])){
+	$userObject = new User();
+	if($_POST["type"] == "signup"){
+		if($_POST["password"] != $_POST["repassword"]){
+			add_message("text-danger", "Password and repeat password do not much.");
+		} else {
+			$_POST["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
+			$all_users = $userObject->get_all();
+			$available = true;
+			
+			if($all_users){
+				foreach($all_users as $u){
+					if($u["username"] == $_POST["username"]){
+						$available = false;
+						break;
+					}
+				}				
+			}
+
+			if($available){
+				$data = $userObject->fields;
+				foreach ($_POST as $key => $value) {
+					if(array_key_exists($key, $data)){
+						$data[$key] = $value;
+					}
+				}
+				if(!$userObject->post_item($data)){
+					add_message("text-danger", $userObject->error);
+				} else {
+					add_message("text-success", "Account successfully created, you can now login.");
+				}
+				
+			} else {
+				add_message("text-warning", "The username is already registered. Pick a different username or login if you already have an account.");
+			}
+		}
+	}
+}
 ?>
 
 <div class="row">
@@ -7,7 +46,9 @@ require_once "includes/header.php";
 		<div class="container-sm">
 			<div class="card">
 				<div class="card-body">
+					<?php render_messages(); ?>
 					<form method="post">
+						<input type="hidden" name="type" value="signup">
 						<div class="form-group my-2">
 							<div class="input-group">
 								<div class="form-floating w-100">

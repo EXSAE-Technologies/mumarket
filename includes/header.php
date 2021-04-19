@@ -3,6 +3,7 @@ require_once "models.php";
 require_once "functions.php";
 
 $user = get_logged_in_user();
+$notification = new Notification();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,10 @@ $user = get_logged_in_user();
 					<a class="nav-link active" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/chat.php">Chat</a>
+					<a class="nav-link" href="/chat.php">Chat<span class="badge bg-primary rounded-pill">0</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/notification.php">Notification<span class="badge bg-primary rounded-pill">0</span></a>
 				</li>
 			</ul>
 		</div>
