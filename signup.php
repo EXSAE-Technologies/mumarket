@@ -42,7 +42,7 @@ if(isset($_POST["type"])){
 ?>
 
 <div class="row">
-	<div class="col-sm">
+	<div class="col-sm bg-primary bg-gradient h-100 p-4">
 		<div class="container-sm">
 			<div class="card">
 				<div class="card-body">
@@ -82,7 +82,7 @@ if(isset($_POST["type"])){
 							</div>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary form-control">Create</button>
+							<button class="btn btn-secondary form-control">Create</button>
 						</div>
 					</form>
 					<div class="d-flex justify-content-center my-2">
@@ -92,7 +92,9 @@ if(isset($_POST["type"])){
 			</div>
 		</div>
 	</div>
-	<div class="col-sm d-none d-sm-block"></div>
+	<div class="col-sm d-none p-4 login-screen d-sm-flex align-items-center justify-content-center">
+		<h3 class="shadow-lg text-primary"><center>Welcome to MuMarket.<br> Join us and countless many others.<center></h3>
+	</div>
 </div>
 
 <?php 

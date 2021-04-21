@@ -10737,4 +10737,11 @@ textarea.form-control-lg {
   bottom: 0;
 }
 
+.login-screen{
+  background-image: url("../images/login-screen.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: blue;
+  background-blend-mode: saturation;
+}
 /*# sourceMappingURL=main.css.map */

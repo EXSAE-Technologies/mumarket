@@ -17,9 +17,9 @@ $notification = new Notification();
     <title>MuMarket</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
 	<div class="container-fluid">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<a class="navbar-brand" href="/">MuMarket</a>
@@ -29,17 +29,17 @@ $notification = new Notification();
 					<a class="nav-link active" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/chat.php">Chat<span class="badge bg-primary rounded-pill">0</span></a>
+					<a class="nav-link" href="/chat.php">Chat <span class="badge bg-primary rounded-pill">0</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/notification.php">Notification<span class="badge bg-primary rounded-pill">0</span></a>
+					<a class="nav-link" href="/notification.php">Notification <span class="badge bg-primary rounded-pill">0</span></a>
 				</li>
 			</ul>
 		</div>
 		<?php
 		if(logged_in()){
 		?>
-		<a href="" class="btn btn-primary"><?php echo $user["username"]; ?></a>
+		<a href="/profile.php" class="btn btn-primary"><?php echo $user["username"]; ?></a>
 		<?php
 		} else {
 		?>
