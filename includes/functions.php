@@ -14,6 +14,13 @@ function logged_in(){
 	return $logged_in;
 }
 
+function require_login(){
+	$next = $_SERVER['SCRIPT_NAME'];
+	if(!logged_in()){
+		header("Location: /login.php?next=".$next);
+	}
+}
+
 function get_logged_in_user(){
 	if (logged_in()){
 		$mmuid = $_COOKIE["mmuid"];

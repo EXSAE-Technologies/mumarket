@@ -2,9 +2,13 @@
 require_once "includes/header.php";
 
 if(isset($_POST["type"])){
-	$userObject = new User();
 	if($_POST["type"] == "login"){
-		$all_users = $userObject->get_all();
+		if(isset($_GET["next"])){
+			$next = $_GET["next"];
+		} else {
+			$next = "/";
+		}
+		$all_users = $userObj->get_all();
 		$me = false;
 		foreach($all_users as $u){
 			if($u["username"] == $_POST["username"]){
@@ -15,7 +19,7 @@ if(isset($_POST["type"])){
 		if($me){
 			if(password_verify($_POST["password"], $me["password"])){
 				setcookie("mmuid", $me["id"], time() + (86400 * 30), "/");
-				header("Location: /");
+				header("Location: ".$next);
 			} else {
 				add_message("text-danger", "Password incorrect.");
 			}
@@ -38,7 +42,7 @@ if(isset($_POST["type"])){
 						<div class="form-group my-2">
 							<div class="input-group">
 								<div class="form-floating w-100">
-									<input type="text" name="username" class="form-control" id="floatingUsername">
+									<input type="text" name="username" class="form-control" id="floatingUsername" required>
 									<label for="floatingUsername">Username</label>
 								</div>
 							</div>
@@ -46,7 +50,7 @@ if(isset($_POST["type"])){
 						<div class="form-group my-2">
 							<div class="input-group">
 								<div class="form-floating w-100">
-									<input type="password" name="password" class="form-control" id="floatingPassword">
+									<input type="password" name="password" class="form-control" id="floatingPassword" required>
 									<label for="floatingPassword">Password</label>
 								</div>
 							</div>

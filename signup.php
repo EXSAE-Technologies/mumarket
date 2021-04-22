@@ -2,7 +2,6 @@
 require_once "includes/header.php";
 
 if(isset($_POST["type"])){
-	$userObject = new User();
 	if($_POST["type"] == "signup"){
 		if($_POST["password"] != $_POST["repassword"]){
 			add_message("text-danger", "Password and repeat password do not much.");

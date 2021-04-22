@@ -3,7 +3,10 @@ require_once "models.php";
 require_once "functions.php";
 
 $user = get_logged_in_user();
-$notification = new Notification();
+
+//Global objects
+$userObj = new User();
+$notificationObj = new Notification();
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +32,7 @@ $notification = new Notification();
 					<a class="nav-link active" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/chat.php">Chat <span class="badge bg-primary rounded-pill">0</span></a>
+					<a class="nav-link" href="/inbox.php">Inbox <span class="badge bg-primary rounded-pill">0</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/notification.php">Notification <span class="badge bg-primary rounded-pill">0</span></a>
