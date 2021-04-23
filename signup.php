@@ -7,7 +7,7 @@ if(isset($_POST["type"])){
 			add_message("text-danger", "Password and repeat password do not much.");
 		} else {
 			$_POST["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
-			$all_users = $userObject->get_all();
+			$all_users = $userObj->get_all();
 			$available = true;
 			
 			if($all_users){
@@ -20,14 +20,14 @@ if(isset($_POST["type"])){
 			}
 
 			if($available){
-				$data = $userObject->fields;
+				$data = $userObj->fields;
 				foreach ($_POST as $key => $value) {
 					if(array_key_exists($key, $data)){
 						$data[$key] = $value;
 					}
 				}
-				if(!$userObject->post_item($data)){
-					add_message("text-danger", $userObject->error);
+				if(!$userObj->post_item($data)){
+					add_message("text-danger", $userObj->error);
 				} else {
 					add_message("text-success", "Account successfully created, you can now login.");
 				}
