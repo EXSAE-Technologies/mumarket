@@ -47,4 +47,25 @@ class Chat extends Db{
 		return $this->return_many($sql);
 	}
 }
+
+class Service extends Db{
+	function __init__(){
+		$this->table = "service";
+		$this->fields = ["user"=>"", "name"=>"", "image"=>"/assets/images/login-screen.jpg", "description"=>"", "open"=>""];
+	}
+}
+
+class Button extends Db{
+	function __init__(){
+		$this->table = "button";
+		$this->fields = ["service"=>"", "name"=>"", "action"=>"", "type"=>""];
+	}
+}
+
+class Product extends Db{
+	function __init__(){
+		$this->table = "product";
+		$this->fields = ["service"=>"", "name"=>"", "description"=>"", "image"=>"", "price"=>""];
+	}
+}
 ?>

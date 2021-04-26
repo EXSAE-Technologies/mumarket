@@ -1,6 +1,9 @@
 <?php 
 require_once "includes/header.php";
 require_login();
+
+$serviceObj = new Service();
+$services = $serviceObj->get_where(["user"=>$user["id"]]);
 ?>
 
 <div class="container-fluid">
@@ -17,7 +20,28 @@ require_login();
 		</div>
 	</div>
 </div>
-
+<div class="container-sm">
+	<div class="buttons p-2 d-flex justify-content-evenly bg-white mb-2">
+		<a href="/add-service.php" class="btn btn-outline-primary">Add Service</a>
+	</div>
+	<div class="row row-cols-2 row-cols-sm-4">
+		<?php
+		foreach($services as $service){
+		?>
+		<div class="col">
+			<div class="card">
+				<img src="<?php echo $service['image']; ?>" class="">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item"><?php echo $service['name']; ?></li>
+					<li class="list-group-item"><a href="/service.php?id=<?php echo $service['id']; ?>" class="btn btn-outline-primary w-100">View</a></li>
+				</ul>
+			</div>
+		</div>
+		<?php
+		}
+		?>
+	</div>
+</div>
 <?php 
 require_once "includes/footer.php";
 ?>

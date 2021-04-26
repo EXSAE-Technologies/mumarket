@@ -32,11 +32,6 @@ abstract class Db{
 		}
 	}
 
-	function get($item_id){
-		$sql = "SELECT * FROM ".$this->table." WHERE id=".$item_id;
-		return $this->return_one($sql);
-	}
-
 	function return_many($sql){
 		$result = $this->conn->query($sql);
 		if($result){
@@ -50,6 +45,31 @@ abstract class Db{
 			$this->error = $this->conn->error;
 			return FALSE;
 		}
+	}
+
+	function get_where($data, $many=true, $join_by=", "){
+		$sql = "SELECT * FROM ".$this->table." WHERE ";
+		$first = true;
+		foreach($data as $key => $value){
+			if($first){
+				$sql .= $key."='".$value."'";
+				$first = false;
+			} else {
+				$sql .= $join_by.$key."='".$value."'";
+			}
+		}
+		$sql .= ";";
+
+		if($many){
+			return $this->return_many($sql);
+		} else {
+			return $this->return_one($sql);
+		}
+	}
+
+	function get($item_id){
+		$sql = "SELECT * FROM ".$this->table." WHERE id=".$item_id;
+		return $this->return_one($sql);
 	}
 
 	function get_all(){
@@ -66,9 +86,16 @@ abstract class Db{
 	}
 
 	function post_item($data){
+		$fields = $this->fields;
+		foreach($data as $key => $value){
+			if(array_key_exists($key, $fields)){
+				$fields[$key] = $value;
+			}
+		}
+
 		$sql = "INSERT INTO ".$this->table." (id";
 		$sql2 = ") VALUES ('0'";
-		foreach($data as $key=>$value){
+		foreach($fields as $key=>$value){
 			$sql .= ",".$key;
 			$sql2 .= ",'".$value."'";
 		}
@@ -93,7 +120,7 @@ abstract class Db{
 	}
 
 	function delete_item_by_id($id){
-		$sql = "DELETE FROM $this->table WHERE id=$id";
+		$sql = "DELETE FROM ".$this->table." WHERE id='".$id."'";
 		return $this->post($sql);
 	}
 

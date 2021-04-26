@@ -32,6 +32,9 @@ $notificationObj = new Notification();
 					<a class="nav-link active" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="/services.php">Services</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="/inbox.php">Inbox <span class="badge bg-primary rounded-pill">0</span></a>
 				</li>
 				<li class="nav-item">
